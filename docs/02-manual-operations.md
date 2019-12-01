@@ -12,19 +12,7 @@ You heard about the `public cloud` thing, which allows you to provision compute 
 
 You've signed up for a free tier of [Google Cloud Platform](https://cloud.google.com/) (GCP) and are about to start deploying your application.
 
-## Provision Compute Resources
 
-First thing we will do is to provision a virtual machine (VM) inside GCP for running the application.
-
-Use the following gcloud command in your terminal to launch a VM with Ubuntu 16.04 distro:
-
-```bash
-$ gcloud compute instances create raddit-instance-2 \
-    --image-family ubuntu-1604-lts \
-    --image-project ubuntu-os-cloud \
-    --boot-disk-size 10GB \
-    --machine-type n1-standard-1
-```
 
 ## Create an SSH key pair
 
@@ -45,7 +33,7 @@ Add the SSH private key to the ssh-agent:
 
 ```bash
 
-$ sudo ssh-agent bash // Прямо не факт, что это дает нужный эффект
+$ eval `ssh-agent -s` // если сзязь не устанавливается
 $ ssh-add ~/.ssh/raddit-user
 ```
 
@@ -53,6 +41,20 @@ Verify that the key was added to the ssh-agent:
 
 ```bash
 $ ssh-add -l
+```
+
+## Provision Compute Resources
+
+First thing we will do is to provision a virtual machine (VM) inside GCP for running the application.
+
+Use the following gcloud command in your terminal to launch a VM with Ubuntu 16.04 distro:
+
+```bash
+$ gcloud compute instances create raddit-instance-2 \
+    --image-family ubuntu-1604-lts \
+    --image-project ubuntu-os-cloud \
+    --boot-disk-size 10GB \
+    --machine-type n1-standard-1
 ```
 
 ## Install Application Dependencies
