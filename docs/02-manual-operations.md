@@ -44,7 +44,8 @@ $ gcloud compute project-info add-metadata \
 Add the SSH private key to the ssh-agent:
 
 ```bash
-$ sudo ssh-agent bash`
+
+$ sudo ssh-agent bash // Прямо не факт, что это дает нужный эффект
 $ ssh-add ~/.ssh/raddit-user
 ```
 
