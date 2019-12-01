@@ -137,7 +137,9 @@ $ sudo systemctl status mongod
 Download a systemd unit file for starting the application from a gist:
 
 ```bash
-$ wget https://gist.githubusercontent.com/Artemmkin/ce82397cfc69d912df9cd648a8d69bec/raw/7193a36c9661c6b90e7e482d256865f085a853f2/raddit.service
+$ wget 
+https://gist.githubusercontent.com/EuLeEr/d2e00c2cbdf7359108598e869c78a345/raw/7193a36c9661c6b90e7e482d256865f085a853f2/raddit.service
+#https://gist.githubusercontent.com/Artemmkin/ce82397cfc69d912df9cd648a8d69bec/raw/7193a36c9661c6b90e7e482d256865f085a853f2/raddit.service
 ```
 
 Move it to the systemd directory
