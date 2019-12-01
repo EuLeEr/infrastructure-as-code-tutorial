@@ -59,24 +59,20 @@ Save it to the `configuration.sh` file inside created `scripts` directory:
 ```bash
 #!/bin/bash
 set -e
-
 echo "  ----- install ruby and bundler -----  "
 apt-get update
 apt-get install -y ruby-full build-essential
 gem install --no-rdoc --no-ri bundler
-
 echo "  ----- install mongodb -----  "
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add -
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.2.list
 apt-get update
 apt-get install -y mongodb-org
-
 echo "  ----- start mongodb -----  "
 systemctl start mongod
 systemctl enable mongod
-
 echo "  ----- copy unit file for application -----  "
-wget https://gist.githubusercontent.com/Artemmkin/ce82397cfc69d912df9cd648a8d69bec/raw/7193a36c9661c6b90e7e482d256865f085a853f2/raddit.service
+wget https://gist.githubusercontent.com/Artemmkin/ce82397cfc69d912df9cd648a8d69bec/raw/7193a36c9661c6b90e7e482d256865f085a853f2/r$
 mv raddit.service /etc/systemd/system/raddit.service
 ```
 
@@ -87,16 +83,14 @@ Create a script for copying the application code from GitHub repository, install
 Save it into `deploy.sh` file inside `scripts` directory:
 
 ```bash
+
 #!/bin/bash
 set -e
-
 echo "  ----- clone application repository -----  "
-git clone https://github.com/Artemmkin/raddit.git
-
+git clone https://github.com/EuLeEr/raddit.git
 echo "  ----- install dependent gems -----  "
 cd ./raddit
 sudo bundle install
-
 echo "  ----- start the application -----  "
 sudo systemctl start raddit
 sudo systemctl enable raddit
@@ -107,6 +101,8 @@ sudo systemctl enable raddit
 Copy the `scripts` directory to the created VM:
 
 ```bash
+$ ssh raddit-user@${INSTANCE_IP}
+$ exit
 $ INSTANCE_IP=$(gcloud --format="value(networkInterfaces[0].accessConfigs[0].natIP)" compute instances describe raddit-instance-3)
 $ scp -r ./scripts raddit-user@${INSTANCE_IP}:/home/raddit-user
 ```
