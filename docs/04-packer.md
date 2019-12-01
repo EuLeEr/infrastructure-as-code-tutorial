@@ -26,7 +26,7 @@ $ packer -v
 
 Create a new directory called `packer` inside your `iac-tutorial` repo, which we'll use to save the work done in this lab.
 
-## Define image builder
+## Define image builder (когда идет запуск packer build на type provider строится базовый образ)
 
 The way Packer works is simple. It starts a VM with specified characteristics, configures the operating system and installs the software you specify, and then it creates a machine image from that VM.
 
@@ -190,5 +190,38 @@ Destroy the current VM and move onto the next lab:
 ```bash
 $ gcloud compute instances delete raddit-instance-4
 ```
-
+## Базовые образы можно создать (Immutable infrastucture) для :
+alicloud/
+amazon/
+azure/
+cloudstack/
+digitalocean/
+docker/
+file/
+googlecompute/
+hcloud/
+hyperone/
+hyperv/
+jdcloud/
+linode/
+lxc/
+lxd/
+ncloud/
+null/
+oneandone/
+openstack/
+oracle/
+osc/
+parallels/
+profitbricks/
+proxmox/
+qemu/
+scaleway/
+tencentcloud/
+triton/
+ucloud/
+vagrant/
+virtualbox/
+vmware/
+yandex/
 Next: [Terraform](05-terraform.md)
